@@ -30,6 +30,7 @@ class _TvMovieCardState extends State<TvMovieCard> {
       autofocus: true,
       onFocusChange: (value) => setState(() {
         _isFocused = value;
+        print("onFocusChange : " + widget.movie.name);
       }),
       onKey: (_, event) {
         if (widget.onTap != null && event.hasSubmitIntent) {
@@ -60,7 +61,8 @@ class _TvMovieCardState extends State<TvMovieCard> {
   }
 
   Future<void> _incrementCounter() async {
-    final CustomSharedPreferencesIOS prefs = await CustomSharedPreferencesIOS.getInstance();
+    final CustomSharedPreferencesIOS prefs =
+        await CustomSharedPreferencesIOS.getInstance();
     final int counter = (prefs.getInt('counter') ?? 0) + 1;
     print('ALDE $counter');
     prefs.setInt('counter', counter);
