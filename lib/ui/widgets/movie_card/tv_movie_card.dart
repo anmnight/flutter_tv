@@ -30,7 +30,7 @@ class _TvMovieCardState extends State<TvMovieCard> {
       autofocus: true,
       onFocusChange: (value) => setState(() {
         _isFocused = value;
-        print("onFocusChange : " + widget.movie.name);
+        // print("onFocusChange : " + widget.movie.name);
       }),
       onKey: (_, event) {
         if (widget.onTap != null && event.hasSubmitIntent) {
