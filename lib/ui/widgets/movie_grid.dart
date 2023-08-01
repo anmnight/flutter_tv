@@ -23,16 +23,6 @@ class MovieGrid extends StatelessWidget {
       controller: controller,
       physics: const BouncingScrollPhysics(),
       slivers: [
-        SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (context, index) => getMovieCard()(
-              movie: movies[index],
-              index: index,
-              onTap: () => onTapMovie(movies[index]),
-            ),
-            childCount: movies.length,
-          ),
-        ),
         SliverPadding(
           padding: const EdgeInsets.all(28),
           sliver: SliverGrid(

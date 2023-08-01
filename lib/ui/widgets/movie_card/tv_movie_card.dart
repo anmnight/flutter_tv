@@ -22,7 +22,7 @@ class TvMovieCard extends StatefulWidget {
 
 class _TvMovieCardState extends State<TvMovieCard> {
   bool _isFocused = false;
-  static const _hoverDuration = Duration(milliseconds: 300);
+  static const _hoverDuration = Duration(milliseconds: 100);
 
   @override
   Widget build(BuildContext context) {
