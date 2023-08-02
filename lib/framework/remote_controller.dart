@@ -27,9 +27,9 @@ class RemoteController {
   }
 
   bool handleKeyMessage(KeyEvent message) {
-    print("handleKeyMessage keyEvent : " + String.fromCharCode(message.logicalKey.hashCode));
+    print("handleKeyMessage keyEvent ${message.logicalKey}" );
 
-    if (LogicalKeyboardKey.goBack == message.logicalKey) {
+    if (LogicalKeyboardKey.goBack == message.logicalKey||LogicalKeyboardKey.escape == message.logicalKey) {
       final message = const JSONMethodCodec()
           .encodeMethodCall(const MethodCall('popRoute'));
       ServicesBinding.instance.defaultBinaryMessenger.handlePlatformMessage(

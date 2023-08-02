@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_tv/business/movies_bloc.dart';
-import 'package:flutter_tv/ui/widgets/movie_details.dart';
-import 'package:flutter_tv/ui/widgets/movie_grid.dart';
 import 'package:flutter_tv/ui/widgets/movie_tabbar.dart';
 import 'package:flutter_tv/ui/widgets/platform.dart';
 
@@ -29,20 +25,6 @@ class _MoviesScreenState extends State<MoviesScreen> {
   Widget _buildMoviesGrid() {
     return Expanded(
       child: MovieTabBar(),
-      // child: BlocBuilder<MoviesBloc, MoviesState>(builder: (context, state) {
-      //   if (state is MoviesLoadedState) {
-      //     return MovieGrid(
-      //       movies: state.movies,
-      //       onTapMovie: (movie) => Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-      //         return MovieDetails(movie: movie);
-      //       })),
-      //     );
-      //   } else {
-      //     return const Center(
-      //       child: CircularProgressIndicator(),
-      //     );
-      //   }
-      // }),
     );
   }
 

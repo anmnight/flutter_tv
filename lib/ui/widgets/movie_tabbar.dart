@@ -21,6 +21,11 @@ class _MovieTabBarState extends State<MovieTabBar>
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
+
+    _tabController.addListener(() {
+      var index = _tabController.index;
+      print("index: $index");
+    });
   }
 
   @override
@@ -32,22 +37,22 @@ class _MovieTabBarState extends State<MovieTabBar>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('TabBar Sample'),
-        bottom: TabBar(
-          controller: _tabController,
-          tabs: const <Widget>[
-            Tab(
-              icon: Icon(Icons.cloud_outlined),
-            ),
-            Tab(
-              icon: Icon(Icons.beach_access_sharp),
-            ),
-            Tab(
-              icon: Icon(Icons.brightness_5_sharp),
-            ),
-          ],
-        ),
+      appBar: TabBar(
+        controller: _tabController,
+        tabs: const <Widget>[
+          Tab(
+            height: 100,
+            icon: Icon(Icons.cloud_outlined),
+          ),
+          Tab(
+            height: 100,
+            icon: Icon(Icons.beach_access_sharp),
+          ),
+          Tab(
+            height: 100,
+            icon: Icon(Icons.brightness_5_sharp),
+          ),
+        ],
       ),
       body: TabBarView(
         controller: _tabController,
