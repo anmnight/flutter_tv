@@ -14,7 +14,8 @@ class RemoteController {
 
   static const codec = JSONMessageCodec();
 
-  static const channel = BasicMessageChannel<dynamic>(gamePadChannelName, codec);
+  static const channel =
+      BasicMessageChannel<dynamic>(gamePadChannelName, codec);
 
   factory RemoteController() => _instance ?? RemoteController._();
 
@@ -26,10 +27,13 @@ class RemoteController {
   }
 
   bool handleKeyMessage(KeyEvent message) {
+    print("handleKeyMessage keyEvent : " + String.fromCharCode(message.logicalKey.hashCode));
+
     if (LogicalKeyboardKey.goBack == message.logicalKey) {
-      final message = const JSONMethodCodec().encodeMethodCall(const MethodCall('popRoute'));
-      ServicesBinding.instance.defaultBinaryMessenger
-          .handlePlatformMessage(SystemChannels.navigation.name, message, (_) {});
+      final message = const JSONMethodCodec()
+          .encodeMethodCall(const MethodCall('popRoute'));
+      ServicesBinding.instance.defaultBinaryMessenger.handlePlatformMessage(
+          SystemChannels.navigation.name, message, (_) {});
       return true;
     }
     return false;
@@ -37,17 +41,24 @@ class RemoteController {
 
   void triggerKey(LogicalKeyboardKey key) {
     if (LogicalKeyboardKey.arrowLeft == key) {
-      FocusManager.instance.primaryFocus!.focusInDirection(TraversalDirection.left);
+      FocusManager.instance.primaryFocus!
+          .focusInDirection(TraversalDirection.left);
     } else if (LogicalKeyboardKey.arrowRight == key) {
-      FocusManager.instance.primaryFocus!.focusInDirection(TraversalDirection.right);
+      FocusManager.instance.primaryFocus!
+          .focusInDirection(TraversalDirection.right);
     } else if (LogicalKeyboardKey.arrowUp == key) {
-      FocusManager.instance.primaryFocus!.focusInDirection(TraversalDirection.up);
+      FocusManager.instance.primaryFocus!
+          .focusInDirection(TraversalDirection.up);
     } else if (LogicalKeyboardKey.arrowDown == key) {
-      FocusManager.instance.primaryFocus!.focusInDirection(TraversalDirection.down);
+      FocusManager.instance.primaryFocus!
+          .focusInDirection(TraversalDirection.down);
     }
   }
 
   Future<void> _onMessage(dynamic arguments) async {
+
+    print("_onMessage : " + arguments);
+
     num x = arguments['x'];
     num y = arguments['y'];
     String type = arguments['type'];
