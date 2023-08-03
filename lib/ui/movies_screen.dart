@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_tv/ui/widgets/movie_details.dart';
+import 'package:flutter_tv/ui/widgets/movie_grid.dart';
 import 'package:flutter_tv/ui/widgets/movie_tabbar.dart';
 import 'package:flutter_tv/ui/widgets/platform.dart';
+
+import '../business/movies_bloc.dart';
 
 class MoviesScreen extends StatefulWidget {
   const MoviesScreen({Key? key}) : super(key: key);
@@ -24,7 +29,21 @@ class _MoviesScreenState extends State<MoviesScreen> {
 
   Widget _buildMoviesGrid() {
     return Expanded(
-      child: MovieTabBar(),
+      child: BlocBuilder<MoviesBloc, MoviesState>(builder: (context, state) {
+        if (state is MoviesLoadedState) {
+          return MovieGrid(
+            movies: state.movies,
+            onTapMovie: (movie) => Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) {
+              return MovieDetails(movie: movie);
+            })),
+          );
+        } else {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      }),
     );
   }
 
@@ -38,8 +57,12 @@ class _MoviesScreenState extends State<MoviesScreen> {
         _buildMoviesGrid(),
       ],
     );
-    return Scaffold(
-      body: MyPlatform.isTv ? moviesScreen : SafeArea(child: moviesScreen),
+
+    return BlocProvider<MoviesBloc>(
+      create: (_) => MoviesBloc()..add(MoviesEvent.initializing),
+      child: Scaffold(
+        body: MyPlatform.isTv ? moviesScreen : SafeArea(child: moviesScreen),
+      ),
     );
   }
 }

@@ -27,9 +27,10 @@ class RemoteController {
   }
 
   bool handleKeyMessage(KeyEvent message) {
-    print("handleKeyMessage keyEvent ${message.logicalKey}" );
+    // print("handleKeyMessage keyEvent ${message.logicalKey}" );
 
-    if (LogicalKeyboardKey.goBack == message.logicalKey||LogicalKeyboardKey.escape == message.logicalKey) {
+    if (LogicalKeyboardKey.goBack == message.logicalKey ||
+        LogicalKeyboardKey.escape == message.logicalKey) {
       final message = const JSONMethodCodec()
           .encodeMethodCall(const MethodCall('popRoute'));
       ServicesBinding.instance.defaultBinaryMessenger.handlePlatformMessage(
@@ -56,7 +57,6 @@ class RemoteController {
   }
 
   Future<void> _onMessage(dynamic arguments) async {
-
     print("_onMessage : " + arguments);
 
     num x = arguments['x'];

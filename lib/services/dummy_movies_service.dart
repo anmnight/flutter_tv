@@ -19,6 +19,7 @@ class DummyMoviesService implements MoviesService {
       temp.addAll(movies);
     }
 
-    return temp;
+    // return temp;
+    return movies;
   }
 }
