@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tv/domain/movie.dart';
 
-class MovieCard extends StatelessWidget {
-  const MovieCard({
+class BaseMovieCard extends StatelessWidget {
+  const BaseMovieCard({
     required this.movie,
     required this.index,
     this.onTap,

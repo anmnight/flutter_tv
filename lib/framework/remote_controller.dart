@@ -31,8 +31,7 @@ class RemoteController {
 
     if (LogicalKeyboardKey.goBack == message.logicalKey ||
         LogicalKeyboardKey.escape == message.logicalKey) {
-      final message = const JSONMethodCodec()
-          .encodeMethodCall(const MethodCall('popRoute'));
+      final message = const JSONMethodCodec().encodeMethodCall(const MethodCall('popRoute'));
       ServicesBinding.instance.defaultBinaryMessenger.handlePlatformMessage(
           SystemChannels.navigation.name, message, (_) {});
       return true;

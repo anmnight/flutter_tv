@@ -8,12 +8,12 @@ import 'package:flutter_tv/business/movies_bloc.dart';
 import 'package:flutter_tv/framework/remote_controller.dart';
 import 'package:flutter_tv/ui/focus/extensions.dart';
 import 'package:flutter_tv/ui/focus/scale_widget.dart';
-import 'package:flutter_tv/ui/select_model_screen.dart';
+import 'package:flutter_tv/select_model_screen.dart';
 import 'package:flutter_tv/ui/widgets/platform.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  if (MyPlatform.isTVOS) {
+  if (MyPlatform.isTVOS || MyPlatform.isWindow) {
     RemoteController().init();
   }
   runApp(const MyApp());

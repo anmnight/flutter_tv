@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_tv/domain/movie.dart';
-import 'package:flutter_tv/ui/widgets/movie_card/mobile_movie_card.dart';
-import 'package:flutter_tv/ui/widgets/movie_card/tv_movie_card.dart';
 import 'package:flutter_tv/ui/widgets/platform.dart';
+
+import '../../base/base_movie_card.dart';
+import '../../base/tv_focus_card.dart';
 
 typedef MyBuilder = Widget Function({
   required Movie movie,
@@ -17,11 +18,12 @@ Widget getTvCard({
   required int index,
   required GestureTapCallback onTap,
 }) =>
-    TvMovieCard(
-      movie: movie,
-      index: index,
-      onTap: onTap,
-      key: ValueKey(movie.name),
+    TvFocusCard(
+      childNode: BaseMovieCard(
+        movie: movie,
+        index: index,
+        onTap: onTap,
+      ),
     );
 
 Widget getMobileCard({
@@ -29,7 +31,7 @@ Widget getMobileCard({
   required int index,
   required GestureTapCallback onTap,
 }) =>
-    MovieCard(
+    BaseMovieCard(
       movie: movie,
       index: index,
       onTap: onTap,

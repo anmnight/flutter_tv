@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tv/domain/movie.dart';
 import 'package:flutter_tv/ui/focus/extensions.dart';
-import 'package:flutter_tv/ui/widgets/movie_card/movie_card.dart';
 import 'package:flutter_tv/ui/widgets/platform.dart';
+
+import '../blocks/movie_card/movie_card.dart';
 
 typedef MovieTapHandler = void Function(Movie);
 

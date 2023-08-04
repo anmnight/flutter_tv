@@ -1,26 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tv/domain/movie.dart';
 import 'package:flutter_tv/ui/focus/extensions.dart';
-import 'package:flutter_tv/ui/widgets/movie_card/mobile_movie_card.dart';
 import 'package:custom_shared_preferences_ios/custom_shared_preferences_ios.dart';
 
-class TvMovieCard extends StatefulWidget {
-  final int index;
+class TvFocusCard extends StatefulWidget {
   final GestureTapCallback? onTap;
-  final Movie movie;
+  final Widget childNode;
 
-  const TvMovieCard({
-    required this.movie,
-    required this.index,
+  const TvFocusCard({
+    required this.childNode,
     this.onTap,
     Key? key,
   }) : super(key: key);
 
   @override
-  _TvMovieCardState createState() => _TvMovieCardState();
+  _TvFocusCardState createState() => _TvFocusCardState();
 }
 
-class _TvMovieCardState extends State<TvMovieCard> {
+class _TvFocusCardState extends State<TvFocusCard> {
   bool _isFocused = false;
   static const _hoverDuration = Duration(milliseconds: 100);
 
@@ -30,7 +26,7 @@ class _TvMovieCardState extends State<TvMovieCard> {
       autofocus: true,
       onFocusChange: (value) => setState(() {
         _isFocused = value;
-        // print("onFocusChange : " + widget.movie.name);
+        print("onFocusChange : $value");
       }),
       onKey: (_, event) {
         if (widget.onTap != null && event.hasSubmitIntent) {
@@ -41,19 +37,30 @@ class _TvMovieCardState extends State<TvMovieCard> {
         return KeyEventResult.ignored;
       },
       child: AnimatedScale(
-        scale: _isFocused ? 1.1 : 1.0,
+        scale: _isFocused ? 1.2 : 1.0,
         duration: _hoverDuration,
         child: AnimatedPhysicalModel(
           borderRadius: BorderRadius.circular(25),
-          color: Colors.black,
+          color: Colors.black12,
           shape: BoxShape.rectangle,
           elevation: _isFocused ? 25 : 10,
           shadowColor: Colors.black,
           duration: _hoverDuration,
           curve: Curves.fastOutSlowIn,
-          child: MovieCard(
-            movie: widget.movie,
-            index: widget.index,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(25),
+              border: _isFocused
+                  ? Border.all(
+                      color: Colors.red,
+                      width: 3,
+                    )
+                  : null,
+            ),
+            child: Padding(
+              padding: EdgeInsets.all(3.0),
+              child: widget.childNode,
+            ),
           ),
         ),
       ),

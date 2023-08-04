@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tv/ui/widgets/movie_details.dart';
-import 'package:flutter_tv/ui/widgets/movie_grid.dart';
-import 'package:flutter_tv/ui/widgets/movie_tabbar.dart';
 import 'package:flutter_tv/ui/widgets/platform.dart';
 
-import '../business/movies_bloc.dart';
+import '../../business/movies_bloc.dart';
+import 'movie_grid.dart';
 
-class MoviesScreen extends StatefulWidget {
-  const MoviesScreen({Key? key}) : super(key: key);
+
+class ChinaMainScreen extends StatefulWidget {
+  const ChinaMainScreen({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _MoviesScreenState();
+  State<StatefulWidget> createState() => _ChinaMainScreenState();
 }
 
-class _MoviesScreenState extends State<MoviesScreen> {
+class _ChinaMainScreenState extends State<ChinaMainScreen> {
   Widget _buildTitle() {
     return const Center(
       child: Text(
-        'Movies',
+        'ChinaLauncher',
         style: TextStyle(
           fontSize: 50,
           fontWeight: FontWeight.bold,
