@@ -7,7 +7,7 @@ import 'package:flutter_tv/ui/widgets/platform.dart';
 
 import '../../business/movies_bloc.dart';
 import '../../domain/movie.dart';
-import 'google_main_layout.dart';
+import 'google_main_list_layout.dart';
 
 class GoogleMainScreen extends StatefulWidget {
   const GoogleMainScreen({Key? key}) : super(key: key);
@@ -35,7 +35,7 @@ class _GoogleMainScreenState extends State<GoogleMainScreen> {
         if (state is MoviesLoadedState) {
           cacheMovie = state.movies[0];
 
-          return GoogleMainLayout(
+          return GoogleMainListLayout(
             movies: state.movies,
             movieFocusFunc: (movie) {
               _callback(movie);

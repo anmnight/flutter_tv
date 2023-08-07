@@ -1,18 +1,20 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_tv/extensions.dart';
 import 'package:flutter_tv/ui/focus/extensions.dart';
-import 'package:custom_shared_preferences_ios/custom_shared_preferences_ios.dart';
 
 class TvFocusCard extends StatefulWidget {
   final GestureTapCallback? onTap;
   final Widget childNode;
   final FocusCallback? focusCallback;
+  final OffsetCallback? offsetCallback;
 
   const TvFocusCard({
     required this.childNode,
     this.onTap,
     this.focusCallback,
+    this.offsetCallback,
     Key? key,
   }) : super(key: key);
 
@@ -33,12 +35,15 @@ class _TvFocusCardState extends State<TvFocusCard> {
         if (widget.focusCallback != null) {
           widget.focusCallback!(value);
         }
-        printDebug("onFocusChange : $value");
       }),
       onKey: (_, event) {
+        if (widget.offsetCallback != null && event is RawKeyUpEvent) {
+          widget.offsetCallback!(_.offset);
+        }
+
         if (widget.onTap != null && event.hasSubmitIntent) {
           widget.onTap!();
-          _incrementCounter();
+          // _incrementCounter();
           return KeyEventResult.handled;
         }
         return KeyEventResult.ignored;
@@ -74,11 +79,11 @@ class _TvFocusCardState extends State<TvFocusCard> {
     );
   }
 
-  Future<void> _incrementCounter() async {
-    final CustomSharedPreferencesIOS prefs =
-        await CustomSharedPreferencesIOS.getInstance();
-    final int counter = (prefs.getInt('counter') ?? 0) + 1;
-    print('ALDE $counter');
-    prefs.setInt('counter', counter);
-  }
+// Future<void> _incrementCounter() async {
+//   final CustomSharedPreferencesIOS prefs =
+//       await CustomSharedPreferencesIOS.getInstance();
+//   final int counter = (prefs.getInt('counter') ?? 0) + 1;
+//   print('ALDE $counter');
+//   prefs.setInt('counter', counter);
+// }
 }
