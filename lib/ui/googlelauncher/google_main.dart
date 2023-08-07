@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_tv/extensions.dart';
 import 'package:flutter_tv/ui/focus/extensions.dart';
 import 'package:flutter_tv/ui/widgets/movie_details.dart';
 import 'package:flutter_tv/ui/widgets/platform.dart';
 
 import '../../business/movies_bloc.dart';
+import '../../domain/movie.dart';
 import 'google_main_layout.dart';
 
 class GoogleMainScreen extends StatefulWidget {
@@ -16,13 +17,14 @@ class GoogleMainScreen extends StatefulWidget {
 }
 
 class _GoogleMainScreenState extends State<GoogleMainScreen> {
+  Movie cacheMovie = Movie(name: "", image: "breakingbad", synopsis: "", meta: "", rating: "");
 
   Widget _buildBackground() {
     return Image(
       fit: BoxFit.cover,
       width: context.screenSize.width,
       height: context.screenSize.height,
-      image: AssetImage('assets/images/bladerunner.png'),
+      image: AssetImage('assets/images/${cacheMovie.image}.png'),
     );
   }
 
@@ -31,8 +33,13 @@ class _GoogleMainScreenState extends State<GoogleMainScreen> {
       height: 180,
       child: BlocBuilder<MoviesBloc, MoviesState>(builder: (context, state) {
         if (state is MoviesLoadedState) {
+          cacheMovie = state.movies[0];
+
           return GoogleMainLayout(
             movies: state.movies,
+            movieFocusFunc: (movie) {
+              _callback(movie);
+            },
             onTapMovie: (movie) => Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) {
@@ -50,6 +57,12 @@ class _GoogleMainScreenState extends State<GoogleMainScreen> {
     );
   }
 
+  void _callback(Movie movie) {
+    setState(() {
+      cacheMovie = movie;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final moviesScreen = Stack(
@@ -64,6 +77,4 @@ class _GoogleMainScreenState extends State<GoogleMainScreen> {
       ),
     );
   }
-
-
 }

@@ -7,12 +7,12 @@ import 'package:custom_shared_preferences_ios/custom_shared_preferences_ios.dart
 class TvFocusCard extends StatefulWidget {
   final GestureTapCallback? onTap;
   final Widget childNode;
-  final FocusNode? focusNode;
+  final FocusCallback? focusCallback;
 
   const TvFocusCard({
     required this.childNode,
     this.onTap,
-    this.focusNode,
+    this.focusCallback,
     Key? key,
   }) : super(key: key);
 
@@ -22,15 +22,17 @@ class TvFocusCard extends StatefulWidget {
 
 class _TvFocusCardState extends State<TvFocusCard> {
   bool _isFocused = false;
-  static const _hoverDuration = Duration(milliseconds: 100);
+  static const _hoverDuration = Duration(milliseconds: 60);
 
   @override
   Widget build(BuildContext context) {
     return Focus(
       autofocus: true,
-      focusNode: widget.focusNode,
       onFocusChange: (value) => setState(() {
         _isFocused = value;
+        if (widget.focusCallback != null) {
+          widget.focusCallback!(value);
+        }
         printDebug("onFocusChange : $value");
       }),
       onKey: (_, event) {
