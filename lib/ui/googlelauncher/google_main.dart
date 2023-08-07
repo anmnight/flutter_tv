@@ -29,7 +29,6 @@ class _GoogleMainScreenState extends State<GoogleMainScreen> {
   Widget _buildMoviesList() {
     return Container(
       height: 180,
-      margin: EdgeInsets.all(20),
       child: BlocBuilder<MoviesBloc, MoviesState>(builder: (context, state) {
         if (state is MoviesLoadedState) {
           return GoogleMainLayout(

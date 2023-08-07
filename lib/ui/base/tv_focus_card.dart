@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tv/extensions.dart';
 import 'package:flutter_tv/ui/focus/extensions.dart';
 import 'package:custom_shared_preferences_ios/custom_shared_preferences_ios.dart';
 
@@ -30,7 +31,7 @@ class _TvFocusCardState extends State<TvFocusCard> {
       focusNode: widget.focusNode,
       onFocusChange: (value) => setState(() {
         _isFocused = value;
-        print("onFocusChange : $value");
+        printDebug("onFocusChange : $value");
       }),
       onKey: (_, event) {
         if (widget.onTap != null && event.hasSubmitIntent) {

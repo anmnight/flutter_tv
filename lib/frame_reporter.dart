@@ -1,6 +1,8 @@
 import 'dart:collection';
 import 'dart:ui';
 
+import 'package:flutter_tv/extensions.dart';
+
 class FrameReporter {
 
   static const maxframes = 100; // 100 帧足够了，对于 60 fps 来说
@@ -21,7 +23,7 @@ class FrameReporter {
       lastFrames.removeLast();
     }
 
-    print("current fps: $fps");
+    printDebug("current fps: $fps");
   }
 
 
