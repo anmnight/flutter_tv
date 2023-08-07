@@ -33,7 +33,6 @@ class _TvFocusCardState extends State<TvFocusCard> {
         if (widget.focusCallback != null) {
           widget.focusCallback!(value);
         }
-        printDebug("onFocusChange : $value");
       }),
       onKey: (_, event) {
         if (widget.onTap != null && event.hasSubmitIntent) {

@@ -11,8 +11,8 @@ import '../blocks/movie_card/movie_card.dart';
 
 typedef MovieTapHandler = void Function(Movie);
 
-class GoogleMainLayout extends StatelessWidget {
-  GoogleMainLayout({
+class GoogleMainListLayout extends StatelessWidget {
+  GoogleMainListLayout({
     required this.movies,
     required this.onTapMovie,
     this.movieFocusFunc,
@@ -24,33 +24,45 @@ class GoogleMainLayout extends StatelessWidget {
   final MovieTapHandler onTapMovie;
   final MovieFocusFunc? movieFocusFunc;
 
+  double itemWidth = 240.0;
+
+
   @override
   Widget build(BuildContext context) {
     return KeyboardListener(
         focusNode: FocusNode(onKey: (node, keyEvent) {
-          // print("keyEvent:${keyEvent.logicalKey}");
           if (keyEvent.logicalKey == LogicalKeyboardKey.arrowRight) {
-            //todo 添加平移动画
-            //   Future.delayed(Duration.zero, () {
-            //     _controller.animateTo(
-            //       240 * 10,
-            //       duration: Duration(milliseconds: 200),
-            //       curve: Curves.ease,
-            //     );
-            //   });
+
+            printDebug(">>>>>>>>>>>>>>>>>> ${node.hasFocus}");
+            // currentFocusIndex += 1;
+            // double offset = itemWidth * (currentFocusIndex);
+            // printDebug("offset : $offset , index: $currentFocusIndex");
+
+
+            // Future.delayed(Duration.zero, () {
+            //   _controller.animateTo(
+            //     offset,
+            //     duration: Duration(milliseconds: 200),
+            //     curve: Curves.ease,
+            //   );
+            // });
+
+            // node.nextFocus();
           }
+
+
 
           return KeyEventResult.ignored;
         }),
         child: ListView.separated(
           scrollDirection: Axis.horizontal,
           controller: _controller,
-          physics: BouncingScrollPhysics(),
+          // physics: BouncingScrollPhysics(),
           itemCount: movies.length,
           shrinkWrap: true,
           itemBuilder: (BuildContext context, int index) {
             return Container(
-              width: 240,
+              width: itemWidth,
               padding: EdgeInsets.all(15),
               child: TvFocusCard(
                 focusCallback: (onFocus) {
