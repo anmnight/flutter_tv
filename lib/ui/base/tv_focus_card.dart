@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tv/ui/focus/extensions.dart';
 import 'package:custom_shared_preferences_ios/custom_shared_preferences_ios.dart';
@@ -5,10 +6,12 @@ import 'package:custom_shared_preferences_ios/custom_shared_preferences_ios.dart
 class TvFocusCard extends StatefulWidget {
   final GestureTapCallback? onTap;
   final Widget childNode;
+  final FocusNode? focusNode;
 
   const TvFocusCard({
     required this.childNode,
     this.onTap,
+    this.focusNode,
     Key? key,
   }) : super(key: key);
 
@@ -24,6 +27,7 @@ class _TvFocusCardState extends State<TvFocusCard> {
   Widget build(BuildContext context) {
     return Focus(
       autofocus: true,
+      focusNode: widget.focusNode,
       onFocusChange: (value) => setState(() {
         _isFocused = value;
         print("onFocusChange : $value");
@@ -37,7 +41,7 @@ class _TvFocusCardState extends State<TvFocusCard> {
         return KeyEventResult.ignored;
       },
       child: AnimatedScale(
-        scale: _isFocused ? 1.2 : 1.0,
+        scale: _isFocused ? 1.1 : 1.0,
         duration: _hoverDuration,
         child: AnimatedPhysicalModel(
           borderRadius: BorderRadius.circular(25),
