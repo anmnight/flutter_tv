@@ -24,12 +24,12 @@ class SelectModelScreen extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) {
-                      return GridMainScreen();
-                    },
+                    builder: (context) => const GridMainScreen(),
                   ),
                 );
               },
+              blockOnFocus: (bool value) {},
+              focusOffsetChange: (Offset value) {},
             ),
             TvFocusCard(
               childNode: IconTextButton(
@@ -40,12 +40,12 @@ class SelectModelScreen extends StatelessWidget {
                 print("Go China Launcher");
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) {
-                      return ChinaMainScreen();
-                    },
+                    builder: (context) => const ChinaMainScreen(),
                   ),
                 );
               },
+              blockOnFocus: (bool value) {},
+              focusOffsetChange: (Offset value) {},
             ),
             TvFocusCard(
               childNode: IconTextButton(
@@ -55,12 +55,12 @@ class SelectModelScreen extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) {
-                      return GoogleMainScreen();
-                    },
+                    builder: (context) => const GoogleMainScreen(),
                   ),
                 );
               },
+              blockOnFocus: (bool value) {},
+              focusOffsetChange: (Offset value) {},
             ),
           ],
         ),

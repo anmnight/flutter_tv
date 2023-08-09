@@ -23,7 +23,7 @@ Widget getTvCard({
         movie: movie,
         index: index,
         onTap: onTap,
-      ),
+      ), blockOnFocus: (bool value) {  }, focusOffsetChange: (Offset value) {  },
     );
 
 Widget getMobileCard({

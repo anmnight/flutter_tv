@@ -5,18 +5,18 @@ import 'package:flutter_tv/extensions.dart';
 import 'package:flutter_tv/ui/focus/extensions.dart';
 
 class TvFocusCard extends StatefulWidget {
-  final GestureTapCallback? onTap;
-  final Widget childNode;
-  final FocusCallback? focusCallback;
-  final OffsetCallback? offsetCallback;
-
   const TvFocusCard({
     required this.childNode,
     this.onTap,
-    this.focusCallback,
-    this.offsetCallback,
+    required this.blockOnFocus,
+    required this.focusOffsetChange,
     Key? key,
   }) : super(key: key);
+
+  final GestureTapCallback? onTap;
+  final Widget childNode;
+  final ValueChanged<bool> blockOnFocus;
+  final ValueChanged<Offset> focusOffsetChange;
 
   @override
   _TvFocusCardState createState() => _TvFocusCardState();
@@ -32,18 +32,15 @@ class _TvFocusCardState extends State<TvFocusCard> {
       autofocus: true,
       onFocusChange: (value) => setState(() {
         _isFocused = value;
-        if (widget.focusCallback != null) {
-          widget.focusCallback!(value);
-        }
+        widget.blockOnFocus(value);
       }),
       onKey: (_, event) {
-        if (widget.offsetCallback != null && event is RawKeyUpEvent) {
-          widget.offsetCallback!(_.offset);
+        if (event is RawKeyUpEvent) {
+          widget.focusOffsetChange(_.offset);
         }
 
         if (widget.onTap != null && event.hasSubmitIntent) {
           widget.onTap!();
-          // _incrementCounter();
           return KeyEventResult.handled;
         }
         return KeyEventResult.ignored;
