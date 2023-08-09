@@ -52,9 +52,12 @@ class GoogleMainListLayout extends StatelessWidget {
               }
             },
             offsetCallback: (offset) {
-              //首个ITEM 居左
-                if (offset.dx < 600) {
-                _moveToItem(index);
+              if (offset.dx < 600) {
+                if (index <= 1) {
+                  _moveToItem(0);
+                } else {
+                  _moveToItem(index - 1);
+                }
               }
             },
             childNode: BaseMovieCard(
