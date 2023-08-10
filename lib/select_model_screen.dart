@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_tv/ui/base/tv_focus_card.dart';
 import 'package:flutter_tv/ui/blocks/icon_text_button.dart';
 import 'package:flutter_tv/ui/chinalauncher/china_main.dart';

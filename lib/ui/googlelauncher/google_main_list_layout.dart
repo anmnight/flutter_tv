@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_tv/ui/googlelauncher/change_notifier_provider.dart';
+import 'package:flutter_tv/arch/change_notifier_provider.dart';
 import 'package:flutter_tv/ui/googlelauncher/google_main_movie_model.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import '../../business/movies_bloc.dart';
@@ -77,7 +77,7 @@ class GoogleMainListLayout extends StatelessWidget {
                   ),
                 );
               },
-              shrinkWrap: true,
+              shrinkWrap: false,
               scrollDirection: Axis.horizontal,
               itemScrollController: _itemScrollController,
             ),

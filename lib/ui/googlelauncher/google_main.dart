@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tv/ui/googlelauncher/change_notifier_provider.dart';
+import 'package:flutter_tv/arch/change_notifier_provider.dart';
 import 'package:flutter_tv/ui/googlelauncher/google_main_background.dart';
 import 'package:flutter_tv/ui/googlelauncher/google_main_movie_model.dart';
 import '../../domain/movie.dart';
@@ -23,12 +23,18 @@ class _GoogleMainState extends State<GoogleMainScreen> {
     return Scaffold(
       body: ChangeNotifierProvider<GoogleMainMovieModel>(
         data: GoogleMainMovieModel(),
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: <Widget>[
-            GoogleMainBackground(),
-            GoogleMainListLayout(),
-          ],
+        child: LayoutBuilder(
+          builder: (context, constraints) => Container(
+            height: constraints.maxHeight,
+            width: constraints.maxWidth,
+            child: Stack(
+              alignment: Alignment.bottomCenter,
+              children: <Widget>[
+                const GoogleMainBackground(),
+                GoogleMainListLayout(),
+              ],
+            ),
+          ),
         ),
       ),
     );
