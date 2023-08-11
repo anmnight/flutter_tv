@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tv/domain/movie.dart';
-import 'package:flutter_tv/ui/focus/extensions.dart';
-import 'package:flutter_tv/ui/widgets/platform.dart';
+import 'package:flutter_tv/framework/platform.dart';
 
-import '../blocks/movie_card/movie_card.dart';
+import '../base/base_movie_card.dart';
+import '../base/tv_focus_card.dart';
 
 typedef MovieTapHandler = void Function(Movie);
 
@@ -28,18 +28,20 @@ class MovieGrid extends StatelessWidget {
           padding: const EdgeInsets.all(28),
           sliver: SliverGrid(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: MyPlatform.isTv
-                  ? 5
-                  : (context.screenSize.width / 250).round(),
+              crossAxisCount:5,
               childAspectRatio: 1.6,
               crossAxisSpacing: MyPlatform.isTv ? 50 : 10,
               mainAxisSpacing: MyPlatform.isTv ? 50 : 10,
             ),
             delegate: SliverChildBuilderDelegate(
-              (context, index) => getMovieCard()(
-                movie: movies[index],
-                index: index,
-                onTap: () => onTapMovie(movies[index]),
+              (context, index) => TvFocusCard(
+                childNode: BaseMovieCard(
+                  movie: movies[index],
+                  index: index,
+                  onTap: () => onTapMovie(movies[index]),
+                ),
+                blockOnFocus: (bool value) {},
+                focusOffsetChange: (Offset value) {},
               ),
               childCount: movies.length,
             ),

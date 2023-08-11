@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_tv/ui/focus/extensions.dart';
+import 'package:flutter_tv/extensions.dart';
 
 class TvFocusCard extends StatefulWidget {
   const TvFocusCard({
@@ -47,16 +47,16 @@ class _TvFocusCardState extends State<TvFocusCard> {
         scale: _isFocused ? 1.1 : 1.0,
         duration: _hoverDuration,
         child: AnimatedPhysicalModel(
-          borderRadius: BorderRadius.circular(25),
+          borderRadius: BorderRadius.circular(15),
           color: Colors.black12,
           shape: BoxShape.rectangle,
-          elevation: _isFocused ? 25 : 10,
+          elevation: _isFocused ? 10 : 0,
           shadowColor: Colors.black,
           duration: _hoverDuration,
           curve: Curves.fastOutSlowIn,
           child: DecoratedBox(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(25),
+              borderRadius: BorderRadius.circular(15),
               border: _isFocused
                   ? Border.all(
                       color: Colors.red,

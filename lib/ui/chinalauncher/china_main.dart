@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tv/ui/widgets/movie_details.dart';
-import 'package:flutter_tv/ui/widgets/platform.dart';
+import 'package:flutter_tv/framework/platform.dart';
 
 import '../../business/movies_bloc.dart';
 import 'movie_grid.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../business/movies_bloc.dart';
-import '../gridlauncher/movie_grid.dart';
+import '../chinalauncher/movie_grid.dart';
 import 'movie_details.dart';
 
 class MovieTabBar extends StatefulWidget {

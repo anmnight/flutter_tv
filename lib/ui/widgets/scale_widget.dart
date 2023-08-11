@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tv/ui/focus/extensions.dart';
+import 'package:flutter_tv/extensions.dart';
 
 class ScaleWidget extends StatelessWidget {
   final Widget child;

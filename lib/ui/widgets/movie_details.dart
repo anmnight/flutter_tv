@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tv/domain/movie.dart';
-import 'package:flutter_tv/ui/widgets/platform.dart';
+import 'package:flutter_tv/framework/platform.dart';
 
-import '../focus/extensions.dart';
-import '../focus/scale_widget.dart';
+import '../../extensions.dart';
+import 'scale_widget.dart';
 
 class MovieDetails extends StatelessWidget {
   const MovieDetails({required this.movie, Key? key}) : super(key: key);
