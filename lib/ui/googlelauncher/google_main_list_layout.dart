@@ -4,9 +4,7 @@ import 'package:flutter_tv/arch/change_notifier_provider.dart';
 import 'package:flutter_tv/ui/googlelauncher/google_main_movie_model.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import '../../business/movies_bloc.dart';
-import '../base/base_movie_card.dart';
-import '../base/tv_focus_card.dart';
-import '../widgets/movie_details.dart';
+import '../base/tv_movie_card.dart';
 
 class GoogleMainListLayout extends StatelessWidget {
   GoogleMainListLayout({
@@ -51,7 +49,7 @@ class GoogleMainListLayout extends StatelessWidget {
                 return Container(
                   width: itemWidth,
                   padding: EdgeInsets.all(20),
-                  child: TvFocusCard(
+                  child: TvMovieCard(
                     blockOnFocus: (isFocus) {
                       if (isFocus) {
                         ChangeNotifierProvider.of<GoogleMainMovieModel>(context,
@@ -62,18 +60,7 @@ class GoogleMainListLayout extends StatelessWidget {
                     focusOffsetChange: (value) {
                       _handleFocusOffsetChange(index, value);
                     },
-                    childNode: BaseMovieCard(
-                        movie: state.movies[index],
-                        index: index,
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return MovieDetails(movie: state.movies[index]);
-                              },
-                            ),
-                          );
-                        }),
+                    movie: state.movies[index],
                   ),
                 );
               },

@@ -1,26 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_tv/domain/movie.dart';
 import 'package:flutter_tv/extensions.dart';
 
-class TvFocusCard extends StatefulWidget {
-  const TvFocusCard({
-    required this.childNode,
+class TvMovieCard extends StatefulWidget {
+  const TvMovieCard({
     this.onTap,
     required this.blockOnFocus,
     required this.focusOffsetChange,
+    required this.movie,
     Key? key,
   }) : super(key: key);
 
   final GestureTapCallback? onTap;
-  final Widget childNode;
   final ValueChanged<bool> blockOnFocus;
   final ValueChanged<Offset> focusOffsetChange;
+  final Movie movie;
 
   @override
-  _TvFocusCardState createState() => _TvFocusCardState();
+  _TvMovieCardState createState() => _TvMovieCardState();
 }
 
-class _TvFocusCardState extends State<TvFocusCard> {
+class _TvMovieCardState extends State<TvMovieCard> {
   bool _isFocused = false;
   static const _hoverDuration = Duration(milliseconds: 60);
 
@@ -57,16 +58,16 @@ class _TvFocusCardState extends State<TvFocusCard> {
           child: DecoratedBox(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage('assets/images/${widget.movie.image}.png'),
+              ),
               border: _isFocused
                   ? Border.all(
                       color: Colors.red,
                       width: 3,
                     )
                   : null,
-            ),
-            child: Padding(
-              padding: EdgeInsets.all(3.0),
-              child: widget.childNode,
             ),
           ),
         ),
