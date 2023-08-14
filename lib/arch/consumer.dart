@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'change_notifier_provider.dart';
 
 class Consumer<T> extends StatelessWidget {
-  Consumer({
+  const Consumer({
     Key? key,
     required this.builder,
   }) : super(key: key);

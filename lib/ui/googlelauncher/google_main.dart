@@ -15,8 +15,8 @@ class GoogleMainScreen extends StatefulWidget {
 }
 
 class _GoogleMainState extends State<GoogleMainScreen> {
-  Movie cacheMovie =
-      Movie(name: "", image: "breakingbad", synopsis: "", meta: "", rating: "");
+  Movie cacheMovie = const Movie(
+      name: "", image: "breakingbad", synopsis: "", meta: "", rating: "");
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class _GoogleMainState extends State<GoogleMainScreen> {
       body: ChangeNotifierProvider<GoogleMainMovieModel>(
         data: GoogleMainMovieModel(),
         child: LayoutBuilder(
-          builder: (context, constraints) => Container(
+          builder: (context, constraints) => SizedBox(
             height: constraints.maxHeight,
             width: constraints.maxWidth,
             child: Stack(

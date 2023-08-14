@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_tv/extensions.dart';
 import 'package:flutter_tv/framework/key_simulator.dart';
 
 class RemoteController {
@@ -31,7 +32,8 @@ class RemoteController {
 
     if (LogicalKeyboardKey.goBack == message.logicalKey ||
         LogicalKeyboardKey.escape == message.logicalKey) {
-      final message = const JSONMethodCodec().encodeMethodCall(const MethodCall('popRoute'));
+      final message = const JSONMethodCodec()
+          .encodeMethodCall(const MethodCall('popRoute'));
       ServicesBinding.instance.defaultBinaryMessenger.handlePlatformMessage(
           SystemChannels.navigation.name, message, (_) {});
       return true;
@@ -56,7 +58,7 @@ class RemoteController {
   }
 
   Future<void> _onMessage(dynamic arguments) async {
-    print("_onMessage : " + arguments);
+    printDebug("_onMessage : $arguments");
 
     num x = arguments['x'];
     num y = arguments['y'];

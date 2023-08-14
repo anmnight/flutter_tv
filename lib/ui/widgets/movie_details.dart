@@ -93,7 +93,7 @@ class MovieDetails extends StatelessWidget {
       body: Stack(
         children: <Widget>[
           LayoutBuilder(
-            builder: (context, constraints) => Container(
+            builder: (context, constraints) => SizedBox(
               height: constraints.maxHeight,
               width: constraints.maxWidth,
               child: Hero(

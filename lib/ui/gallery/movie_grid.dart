@@ -34,6 +34,7 @@ class MovieGrid extends StatelessWidget {
             delegate: SliverChildBuilderDelegate(
               (context, index) => TvMovieCard(
                 movie: movies[index],
+                onTap: () => onTapMovie(movies[index]),
                 blockOnFocus: (bool value) {},
                 focusOffsetChange: (Offset value) {},
               ),

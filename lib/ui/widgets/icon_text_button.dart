@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class IconTextButton extends StatelessWidget {
-  IconTextButton({
+  const IconTextButton({
     required this.label,
     required this.icon,
     Key? key,
@@ -18,7 +18,7 @@ class IconTextButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
-          this.icon,
+          icon,
           const SizedBox(width: 10),
           Text(
             label,
