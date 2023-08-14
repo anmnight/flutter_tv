@@ -19,7 +19,7 @@ class GoogleMainListLayout extends StatelessWidget {
     Future.delayed(Duration.zero, () {
       _itemScrollController.scrollTo(
         index: item,
-        duration: Duration(milliseconds: 200),
+        duration: const Duration(milliseconds: 200),
         curve: Curves.ease,
       );
     });
@@ -41,14 +41,14 @@ class GoogleMainListLayout extends StatelessWidget {
       create: (_) => MoviesBloc()..add(MoviesEvent.initializing),
       child: BlocBuilder<MoviesBloc, MoviesState>(builder: (context, state) {
         if (state is MoviesLoadedState) {
-          return Container(
+          return SizedBox(
             height: 180,
             child: ScrollablePositionedList.builder(
               itemCount: state.movies.length,
               itemBuilder: (BuildContext context, int index) {
                 return Container(
                   width: itemWidth,
-                  padding: EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(20),
                   child: TvMovieCard(
                     blockOnFocus: (isFocus) {
                       if (isFocus) {

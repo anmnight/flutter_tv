@@ -16,7 +16,7 @@ class _GoogleMainBackgroundState extends State<GoogleMainBackground> {
   Widget build(BuildContext context) {
     return Consumer<GoogleMainMovieModel>(
       builder: (context, movie) => LayoutBuilder(
-        builder: (context, constraints) => Container(
+        builder: (context, constraints) => SizedBox(
           height: constraints.maxHeight,
           width: constraints.maxWidth,
           child: Hero(

@@ -4,7 +4,7 @@ import '../../domain/movie.dart';
 
 class GoogleMainMovieModel extends ChangeNotifier {
   Movie _movie =
-      Movie(name: "", image: "breakingbad", synopsis: "", meta: "", rating: "");
+      const Movie(name: "", image: "breakingbad", synopsis: "", meta: "", rating: "");
 
   Movie get currentFocusMovie {
     return _movie;

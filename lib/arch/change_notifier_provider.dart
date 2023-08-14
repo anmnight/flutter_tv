@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
 
 class ChangeNotifierProvider<T extends ChangeNotifier> extends StatefulWidget {
-  ChangeNotifierProvider({
+  const ChangeNotifierProvider({
     Key? key,
     required this.data,
     required this.child,
-  });
-
+  }) : super(key: key);
 
   final Widget child;
   final T data;
@@ -24,8 +23,9 @@ class ChangeNotifierProvider<T extends ChangeNotifier> extends StatefulWidget {
   }
 
   @override
-  _ChangeNotifierProviderState<T> createState() =>
-      _ChangeNotifierProviderState<T>();
+  State<ChangeNotifierProvider<T>> createState() {
+    return _ChangeNotifierProviderState<T>();
+  }
 }
 
 class _ChangeNotifierProviderState<T extends ChangeNotifier>
@@ -69,10 +69,8 @@ class _ChangeNotifierProviderState<T extends ChangeNotifier>
 }
 
 class InheritedProvider<T> extends InheritedWidget {
-  InheritedProvider({
-    required this.data,
-    required Widget child,
-  }) : super(child: child);
+  const InheritedProvider({required this.data, required Widget child, Key? key})
+      : super(child: child, key: key);
 
   final T data;
 

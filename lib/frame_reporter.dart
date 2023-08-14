@@ -8,7 +8,7 @@ class FrameReporter {
   static const maxframes = 100; // 100 帧足够了，对于 60 fps 来说
   final lastFrames = ListQueue<FrameTiming>(maxframes);
   static const REFRESH_RATE = 60;
-  static const frameInterval = const Duration(
+  static const frameInterval = Duration(
       microseconds: Duration.microsecondsPerSecond ~/ REFRESH_RATE);
 
 

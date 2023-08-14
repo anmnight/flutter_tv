@@ -18,7 +18,7 @@ class TvMovieCard extends StatefulWidget {
   final Movie movie;
 
   @override
-  _TvMovieCardState createState() => _TvMovieCardState();
+  State<TvMovieCard> createState() => _TvMovieCardState();
 }
 
 class _TvMovieCardState extends State<TvMovieCard> {

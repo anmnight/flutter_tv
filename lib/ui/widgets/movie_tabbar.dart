@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_tv/extensions.dart';
 
 import '../../business/movies_bloc.dart';
 import '../chinalauncher/movie_grid.dart';
@@ -23,7 +24,7 @@ class _MovieTabBarState extends State<MovieTabBar>
 
     _tabController.addListener(() {
       var index = _tabController.index;
-      print("index: $index");
+      printDebug("index: $index");
     });
   }
 

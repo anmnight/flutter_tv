@@ -19,10 +19,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(MyPlatform.isAndroidTV);
-    print(kTvSize.width);
-    print(width);
-    print(pixelRatio);
+    printDebug(MyPlatform.isAndroidTV);
+    printDebug(kTvSize.width);
+    printDebug(width);
+    printDebug(pixelRatio);
     return MaterialApp(
       home: SizedBox(
         width: kTvSize.width,
