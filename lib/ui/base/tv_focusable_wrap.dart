@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_tv/domain/movie.dart';
 import 'package:flutter_tv/extensions.dart';
 
 class TvFocusableWrap extends StatefulWidget {

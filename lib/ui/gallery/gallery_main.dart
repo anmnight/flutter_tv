@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_tv/domain/movie.dart';
-import 'package:flutter_tv/ui/base/tv_movie_card.dart';
 import 'package:flutter_tv/ui/widgets/icon_text_button.dart';
 import 'package:flutter_tv/ui/widgets/movie_details.dart';
 import 'package:media_kit/media_kit.dart';
@@ -21,16 +19,19 @@ class GalleryMainScreen extends StatefulWidget {
 class _GalleryMainScreenState extends State<GalleryMainScreen> {
   BlocProvider<MoviesBloc> _buildMovieBloc() {
     return BlocProvider<MoviesBloc>(
-      create: (_) => MoviesBloc()..add(MoviesEvent.initializing),
+      create: (_) =>
+      MoviesBloc()
+        ..add(MoviesEvent.initializing),
       child: BlocBuilder<MoviesBloc, MoviesState>(
         builder: (context, state) {
           if (state is MoviesLoadedState) {
             return MovieGrid(
               movies: state.movies,
-              onTapMovie: (movie) => Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) {
-                return MovieDetails(movie: movie);
-              })),
+              onTapMovie: (movie) =>
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) {
+                    return MovieDetails(movie: movie);
+                  })),
             );
           } else {
             return const Center(
@@ -45,54 +46,58 @@ class _GalleryMainScreenState extends State<GalleryMainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          TvFocusableWrap(
-            child: const IconTextButton(
-              label: "Grid 画廊",
-              icon: Icon(Icons.favorite),
-            ),
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) {
-                  return _buildMovieBloc();
-                },
-              ),
-            ),
-          ),
-          TvFocusableWrap(
-            child: const IconTextButton(
-              label: "全屏大图",
-              icon: Icon(Icons.favorite),
-            ),
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) {
-                  return const BigImageShow();
-                },
-              ),
-            ),
-          ),
-          TvFocusableWrap(
-            child: const IconTextButton(
-              label: "视频播放",
-              icon: Icon(Icons.favorite),
-            ),
-            onTap: () {
-              MediaKit.ensureInitialized();
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const SinglePlayerSingleVideoScreen();
-                  },
+      body: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              TvFocusableWrap(
+                child: const IconTextButton(
+                  label: "Grid 画廊",
+                  icon: Icon(Icons.favorite),
                 ),
-              );
-            },
+                onTap: () =>
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return _buildMovieBloc();
+                        },
+                      ),
+                    ),
+              ),
+              TvFocusableWrap(
+                child: const IconTextButton(
+                  label: "全屏大图",
+                  icon: Icon(Icons.favorite),
+                ),
+                onTap: () =>
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return const BigImageShow();
+                        },
+                      ),
+                    ),
+              ),
+              TvFocusableWrap(
+                child: const IconTextButton(
+                  label: "视频播放",
+                  icon: Icon(Icons.favorite),
+                ),
+                onTap: () {
+                  MediaKit.ensureInitialized();
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const SinglePlayerSingleVideoScreen();
+                      },
+                    ),
+                  );
+                },
+              ),
+            ],
           ),
-        ],
       ),
     );
   }
