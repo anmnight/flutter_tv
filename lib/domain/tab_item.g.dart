@@ -1,23 +1,19 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'movie.dart';
+part of 'tab_item.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Movie _$MovieFromJson(Map<String, dynamic> json) => Movie(
+TabItem _$TabItemFromJson(Map<String, dynamic> json) => TabItem(
+      tabId: json['tabId'] as String,
       name: json['name'] as String,
       image: json['image'] as String,
-      synopsis: json['synopsis'] as String,
-      meta: json['meta'] as String,
-      rating: json['rating'] as String,
     );
 
-Map<String, dynamic> _$MovieToJson(Movie instance) => <String, dynamic>{
+Map<String, dynamic> _$TabItemToJson(TabItem instance) => <String, dynamic>{
+      'tabId': instance.tabId,
       'name': instance.name,
       'image': instance.image,
-      'synopsis': instance.synopsis,
-      'meta': instance.meta,
-      'rating': instance.rating,
     };

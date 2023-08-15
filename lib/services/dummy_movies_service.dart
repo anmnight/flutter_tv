@@ -20,6 +20,7 @@ class DummyMoviesService implements MoviesService {
     }
 
     // return temp;
-    return movies;
+    // return movies;
+    return Future.delayed(const Duration(seconds: 2), () => movies);
   }
 }

@@ -1,0 +1,64 @@
+{
+  "tabs": [
+    {
+      "tabId": "a1000",
+      "name": "Rick and Morty",
+      "image": "rick"
+    },
+    {
+      "tabId": "a1001",
+      "name": "Don't look up",
+      "image": "dontlookup"
+    },
+    {
+      "tabId": "a1002",
+      "name": "Friends",
+      "image": "friends"
+    },
+    {
+      "tabId": "a1003",
+      "name": "The Big Lebovski",
+      "image": "lebovski"
+    },
+    {
+      "tabId": "a1004",
+      "name": "Don't look up",
+      "image": "dontlookup"
+    },
+    {
+      "tabId": "a1005",
+      "name": "Stranger Things",
+      "image": "things"
+    },
+    {
+      "tabId": "a1006",
+      "name": "Black Mirror",
+      "image": "mirror"
+    },
+    {
+      "tabId": "a1007",
+      "name": "Dark",
+      "image": "dark"
+    },
+    {
+      "tabId": "a1008",
+      "name": "Meet Joe Black",
+      "image": "joe"
+    },
+    {
+      "tabId": "a1009",
+      "name": "The Great Gatsby",
+      "image": "gatsby"
+    },
+    {
+      "tabId": "a1010",
+      "name": "The Matrix",
+      "image": "matrix"
+    },
+    {
+      "tabId": "a1011",
+      "name": "Ghost in the Shell",
+      "image": "ghost"
+    }
+  ]
+}

@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tv/extensions.dart';
 
+typedef OnFocusHandler = void Function();
+
 class TvFocusableWrap extends StatefulWidget {
   const TvFocusableWrap({
     required this.child,
     this.onTap,
+    this.onFocusHandler,
     Key? key,
   }) : super(key: key);
 
+  final OnFocusHandler? onFocusHandler;
   final GestureTapCallback? onTap;
   final Widget child;
 
@@ -25,6 +29,9 @@ class _TvFocusableWrapState extends State<TvFocusableWrap> {
       autofocus: true,
       onFocusChange: (value) => setState(() {
         _isFocused = value;
+        if (_isFocused && widget.onFocusHandler != null) {
+          widget.onFocusHandler!();
+        }
       }),
       onKey: (_, event) {
         if (widget.onTap != null && event.hasSubmitIntent) {
