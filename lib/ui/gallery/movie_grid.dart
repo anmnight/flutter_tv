@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tv/domain/movie.dart';
-import 'package:flutter_tv/framework/platform.dart';
 import '../base/tv_movie_card.dart';
 
 typedef MovieTapHandler = void Function(Movie);
@@ -23,13 +22,13 @@ class MovieGrid extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       slivers: [
         SliverPadding(
-          padding: const EdgeInsets.all(28),
+          padding: const EdgeInsets.all(18),
           sliver: SliverGrid(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 5,
               childAspectRatio: 1.6,
-              crossAxisSpacing: MyPlatform.isTv ? 50 : 10,
-              mainAxisSpacing: MyPlatform.isTv ? 50 : 10,
+              crossAxisSpacing: 50,
+              mainAxisSpacing: 50,
             ),
             delegate: SliverChildBuilderDelegate(
               (context, index) => TvMovieCard(
