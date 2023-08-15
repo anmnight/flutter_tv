@@ -4,7 +4,7 @@ import 'package:flutter_tv/ui/widgets/icon_text_button.dart';
 import 'package:flutter_tv/ui/widgets/movie_details.dart';
 import 'package:media_kit/media_kit.dart';
 import '../../business/movies_bloc.dart';
-import '../base/tv_focusable_wrap.dart';
+import '../widgets/tv_focusable_wrap.dart';
 import '../video/single_player_single_video.dart';
 import 'big_image_show.dart';
 import 'movie_grid.dart';

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tv/framework/remote_controller.dart';
 import 'package:flutter_tv/extensions.dart';
-import 'package:flutter_tv/ui/gallery/gallery_main.dart';
 import 'package:flutter_tv/framework/platform.dart';
+import 'package:flutter_tv/ui/launcher_model_navigator.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,12 +24,12 @@ class MyApp extends StatelessWidget {
     printDebug(width);
     printDebug(pixelRatio);
     return MaterialApp(
-      home: SizedBox(
-        width: kTvSize.width,
-        height: kTvSize.height,
-        // child: const GoogleMainScreen(),
-        child: const GalleryMainScreen(),
-        // child: const ChinaMainScreen(),
+      home: Scaffold(
+        body: SizedBox(
+          width: kTvSize.width,
+          height: kTvSize.height,
+          child: const LauncherModelNavigator(),
+        ),
       ),
     );
   }
