@@ -42,15 +42,12 @@ class GoogleMainListLayout extends StatelessWidget {
             child: ScrollSnapList(
               selectedItemAnchor: SelectedItemAnchor.START,
               shrinkWrap: false,
+              dynamicItemSize: true,
               updateOnScroll: true,
               itemCount: state.movies.length,
               initialIndex: 0,
               itemSize: 180,
-              itemBuilder: (buildContext, index) =>
-                  _buildItem(context, state.movies[index]),
-              onItemFocus: (index) {
-                printDebug("index : $index");
-              },
+              itemBuilder: (buildContext, index) => _buildItem(context, state.movies[index]),
             ),
           );
         } else {

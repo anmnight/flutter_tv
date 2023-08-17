@@ -57,9 +57,6 @@ class ScrollSnapList extends StatefulWidget {
   ///Global key that passed to child ListView. Can be used for PageStorageKey
   final Key? listViewKey;
 
-  ///Callback function when list snaps/focuses to an item
-  final void Function(int) onItemFocus;
-
   ///Callback function when user reach end of list.
   ///
   ///Can be used to load more data from database.
@@ -127,9 +124,9 @@ class ScrollSnapList extends StatefulWidget {
       {this.background,
       required this.itemBuilder,
       ScrollController? listController,
-      this.curve = Curves.ease,
+      this.curve = Curves.linear,
       this.allowAnotherDirection = true,
-      this.duration = 500,
+      this.duration = 200,
       this.endOfListTolerance,
       this.focusOnItemTap = true,
       this.focusToItem,
@@ -138,7 +135,6 @@ class ScrollSnapList extends StatefulWidget {
       this.key,
       this.listViewKey,
       this.margin,
-      required this.onItemFocus,
       this.onReachEnd,
       this.padding,
       this.reverse = false,
@@ -172,6 +168,7 @@ class ScrollSnapListState extends State<ScrollSnapList> {
   //Current scroll-position in pixel
   double currentPixel = 0;
 
+  @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -184,8 +181,8 @@ class ScrollSnapListState extends State<ScrollSnapList> {
     });
 
     ///After initial jump, set isInit to false
-    Future.delayed(Duration(milliseconds: 10), () {
-      if (this.mounted) {
+    Future.delayed(const Duration(milliseconds: 10), () {
+      if (mounted) {
         setState(() {
           isInit = false;
         });
@@ -198,7 +195,7 @@ class ScrollSnapListState extends State<ScrollSnapList> {
     Future.delayed(Duration.zero, () {
       widget.listController.animateTo(
         location,
-        duration: new Duration(milliseconds: widget.duration),
+        duration: Duration(milliseconds: widget.duration),
         curve: widget.curve,
       );
     });
@@ -244,11 +241,12 @@ class ScrollSnapListState extends State<ScrollSnapList> {
       child = Opacity(child: child, opacity: calculateOpacity(index));
     }
 
-    if (widget.focusOnItemTap)
+    if (widget.focusOnItemTap) {
       return GestureDetector(
         onTap: () => focusToItem(index),
         child: child,
       );
+    }
 
     return child;
   }
@@ -263,7 +261,7 @@ class ScrollSnapListState extends State<ScrollSnapList> {
     //substracted by itemSize/2 (to center the item)
     //divided by pixels taken by each item
     int cardIndex =
-        index != null ? index : ((pixel! - itemSize / 2) / itemSize).ceil();
+        index ?? ((pixel! - itemSize / 2) / itemSize).ceil();
 
     //Avoid index getting out of bounds
     if (cardIndex < 0) {
@@ -275,7 +273,6 @@ class ScrollSnapListState extends State<ScrollSnapList> {
     //trigger onItemFocus
     if (cardIndex != previousIndex) {
       previousIndex = cardIndex;
-      widget.onItemFocus(cardIndex);
     }
 
     //target position
