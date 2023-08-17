@@ -1,38 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_tv/arch/change_notifier_provider.dart';
-import 'package:flutter_tv/ui/googlelauncher/google_main_movie_model.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import 'package:flutter_tv/extensions.dart';
+import '../../arch/change_notifier_provider.dart';
 import '../../business/movies_bloc.dart';
+import '../widgets/scroll_snap_list.dart';
 import '../widgets/tv_movie_card.dart';
+import 'google_main_movie_model.dart';
 
 class GoogleMainListLayout extends StatelessWidget {
-  GoogleMainListLayout({
+  const GoogleMainListLayout({
     Key? key,
   }) : super(key: key);
 
-  final _itemScrollController = ItemScrollController();
-
-  final double itemWidth = 240.0;
-
-  _moveToItem(int item) {
-    Future.delayed(Duration.zero, () {
-      _itemScrollController.scrollTo(
-        index: item,
-        duration: const Duration(milliseconds: 200),
-        curve: Curves.ease,
-      );
-    });
-  }
-
-  _handleFocusOffsetChange(index, offset) {
-    if (offset.dx < 600) {
-      if (index <= 1) {
-        _moveToItem(0);
-      } else {
-        _moveToItem(index - 1);
-      }
-    }
+  Widget _buildItem(context, movie) {
+    return Container(
+      width: 180,
+      padding: const EdgeInsets.all(15),
+      child: TvMovieCard(
+        blockOnFocus: (isFocus) {
+          if (isFocus) {
+            ChangeNotifierProvider.of<GoogleMainMovieModel>(context,
+                    listen: false)
+                ?.update(movie);
+          }
+        },
+        focusOffsetChange: (value) {},
+        movie: movie,
+      ),
+    );
   }
 
   @override
@@ -42,31 +37,20 @@ class GoogleMainListLayout extends StatelessWidget {
       child: BlocBuilder<MoviesBloc, MoviesState>(builder: (context, state) {
         if (state is MoviesLoadedState) {
           return SizedBox(
-            height: 180,
-            child: ScrollablePositionedList.builder(
-              itemCount: state.movies.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  width: itemWidth,
-                  padding: const EdgeInsets.all(20),
-                  child: TvMovieCard(
-                    blockOnFocus: (isFocus) {
-                      if (isFocus) {
-                        ChangeNotifierProvider.of<GoogleMainMovieModel>(context,
-                                listen: false)
-                            ?.update(state.movies[index]);
-                      }
-                    },
-                    focusOffsetChange: (value) {
-                      _handleFocusOffsetChange(index, value);
-                    },
-                    movie: state.movies[index],
-                  ),
-                );
-              },
+            width: kTvSize.width,
+            height: 120,
+            child: ScrollSnapList(
+              selectedItemAnchor: SelectedItemAnchor.START,
               shrinkWrap: false,
-              scrollDirection: Axis.horizontal,
-              itemScrollController: _itemScrollController,
+              updateOnScroll: true,
+              itemCount: state.movies.length,
+              initialIndex: 0,
+              itemSize: 180,
+              itemBuilder: (buildContext, index) =>
+                  _buildItem(context, state.movies[index]),
+              onItemFocus: (index) {
+                printDebug("index : $index");
+              },
             ),
           );
         } else {

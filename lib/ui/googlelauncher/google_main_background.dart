@@ -19,15 +19,12 @@ class _GoogleMainBackgroundState extends State<GoogleMainBackground> {
         builder: (context, constraints) => SizedBox(
           height: constraints.maxHeight,
           width: constraints.maxWidth,
-          child: Hero(
-            tag: movie.toString(),
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(
-                      'assets/images/${movie?.currentFocusMovie.image}.png'),
-                  fit: BoxFit.fill,
-                ),
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                    'assets/images/${movie?.currentFocusMovie.image}.png'),
+                fit: BoxFit.fill,
               ),
             ),
           ),

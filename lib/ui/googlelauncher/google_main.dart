@@ -20,19 +20,21 @@ class _GoogleMainState extends State<GoogleMainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ChangeNotifierProvider<GoogleMainMovieModel>(
-        data: GoogleMainMovieModel(),
-        child: LayoutBuilder(
-          builder: (context, constraints) => SizedBox(
-            height: constraints.maxHeight,
-            width: constraints.maxWidth,
-            child: Stack(
-              alignment: Alignment.bottomCenter,
-              children: <Widget>[
-                const GoogleMainBackground(),
-                GoogleMainListLayout(),
-              ],
+    return MaterialApp(
+      home: Scaffold(
+        body: ChangeNotifierProvider<GoogleMainMovieModel>(
+          data: GoogleMainMovieModel(),
+          child: LayoutBuilder(
+            builder: (context, constraints) => SizedBox(
+              height: constraints.maxHeight,
+              width: constraints.maxWidth,
+              child: Stack(
+                alignment: Alignment.bottomCenter,
+                children: const <Widget>[
+                  GoogleMainBackground(),
+                  GoogleMainListLayout(),
+                ],
+              ),
             ),
           ),
         ),
