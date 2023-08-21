@@ -22,7 +22,6 @@ class _ChinaLauncherTabBarState extends State<ChinaLauncherTabBar>
   @override
   void initState() {
     super.initState();
-    // _tabController = TabController(length: 1, vsync: this);
   }
 
   @override

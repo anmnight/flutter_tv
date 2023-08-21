@@ -42,7 +42,6 @@ class GoogleMainListLayout extends StatelessWidget {
             child: ScrollSnapList(
               selectedItemAnchor: SelectedItemAnchor.START,
               shrinkWrap: false,
-              dynamicItemSize: true,
               updateOnScroll: true,
               itemCount: state.movies.length,
               initialIndex: 0,
